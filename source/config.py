@@ -4,4 +4,4 @@
 
 # enter your GitHub credentials
 username = 'ritomsonowal' # REQUIRED
-password = 'l@roja#11!' # IF NOT MENTIONED, PASSWORD IS ASKED DURING CREATION OF REPO
+password = '' # IF NOT MENTIONED, PASSWORD IS ASKED DURING CREATION OF REPO

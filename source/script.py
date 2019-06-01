@@ -1,6 +1,8 @@
 import requests
 import config
 from getpass import getpass
+import sys
+import json
 
 # function to authenticate and create git repo
 def create():
@@ -12,17 +14,31 @@ def create():
         else:
             session.auth = (username, getpass())
         response = session.get('https://api.github.com/user')
-    status = response.status_code
-    if (status == 200):
-        print("User Authenticated")
-        # payload = {}
-        # repo = requests.get('https://api.github.com/user/repos')
-    elif (status == 401):
-        print("Bad Credentials")
-    elif (status == 403):
-        print("Max number of login attempts exceeded. Try again later...")
-    else:
-        print("Something went wrong! Please try again.")
+
+        status = response.status_code
+        if (status == 200):
+            print("User Authenticated")
+            repo_name = sys.argv[1]
+            payload = {
+                "name": repo_name,
+                "description": "This project was created via GitHub APIs",
+                "private": False,
+                "has_issues": True,
+                "has_projects": True,
+                "has_wiki": True
+            }
+            repo = session.post('https://api.github.com/user/repos', data=json.dumps(payload))
+            if repo.status_code == 201:
+                print("Repository successfully created!")
+            else:
+                print("Something went wrong!")
+        elif (status == 401):
+            print("Bad Credentials")
+        elif (status == 403):
+            print("Max number of login attempts exceeded. Try again later...")
+        else:
+            print("Something went wrong! Please try again.")
+
 
 #----------------------------MAIN---------------------------
 
