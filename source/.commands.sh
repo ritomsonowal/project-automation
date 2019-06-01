@@ -5,12 +5,16 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # to change path where you want to create the project edit the value below
 # default = new project is created outside the directory containing the repo
-DIR=$SCRIPT_DIR
+DIR=0              # eg: DIR = $HOME/projects/
 
 function forge() {
     PROJECT_DIR=$1
     if [ $1 ]; then
-        cd $DIR/..
+        if [ $DIR == 0 ]; then
+            cd $SCRIPT_DIR/../..
+        else
+            cd $DIR
+        fi
         if [ -d "$PROJECT_DIR" ]; then
             # Control will enter here if $DIRECTORY exists.
             echo "Project Already Exists!"
