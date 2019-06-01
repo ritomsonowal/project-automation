@@ -1,4 +1,6 @@
-# UNTRACKED FILES
+# UNTRACKED FILES AND FOLDERS
 
 # DO NOT REMOVE THESE FILES
-# config.py
+source/config.py
+
+source/__pycache__
