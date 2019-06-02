@@ -3,6 +3,8 @@ import config
 from getpass import getpass
 import sys
 import json
+import os
+import subprocess
 
 # function to authenticate and create git repo
 def create():
@@ -39,6 +41,13 @@ def create():
 
             if repo.status_code == 201:
                 print("Repository successfully created!")
+
+                project_directory = sys.argv[2]
+
+                # initialize git repo on local computer
+                dir_path = os.path.dirname(os.path.realpath(__file__))
+                subprocess.call(['./init.sh', username, repo_name, project_directory], cwd=dir_path)
+
             else:
                 print("Something went wrong!")
 
@@ -47,7 +56,7 @@ def create():
 
         elif (login_status == 403):
             print("Max number of login attempts exceeded. Try again later...")
-            
+
         else:
             print("Something went wrong! Please try again.")
 

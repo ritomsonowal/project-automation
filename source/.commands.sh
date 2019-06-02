@@ -23,7 +23,7 @@ function forge() {
             mkdir $PROJECT_DIR
             echo "CREATED "$PROJECT_DIR
             cd $PROJECT_DIR
-            python3 $SCRIPT_DIR/script.py "$1"
+            python3 $SCRIPT_DIR/script.py "$1" "$PWD"
         fi
     else
         echo "Missing Argument -- [ forge <project-name> ]"
