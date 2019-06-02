@@ -3,6 +3,9 @@ Automate the steps involved in initialising a new project
 ---
 This project was created using simple shell scripting and requests module in python3. It uses the **[GitHub REST API v3](https://developer.github.com/v3/)** for authentication of user and creation of new repository.
 
+## WHAT IT DOES:
+This project essentially simplifies the boring procedure associated with starting a new project. One small command will now create a project directory in a desired location for you, and make a GitHub repository for the same and initialize it with an empty README.md file and an initial commit. Can save a lot of your time!
+
 ## CONFIGURATION:
 1. Depending on which shell you are using modify either **~/.bashrc** or **~/.zshrc** file. If you don’t have any idea about this, just go for the **~/.bashrc** file.
 
