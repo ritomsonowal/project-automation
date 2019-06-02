@@ -30,11 +30,11 @@ def create():
             # Repository Details
             payload = {
                 "name": repo_name,
-                "description": "This project was created via GitHub APIs",
-                "private": False,
-                "has_issues": True,
-                "has_projects": True,
-                "has_wiki": True
+                "description": config.description,
+                "private": config.private,
+                "has_issues": config.issues,
+                "has_projects": config.projects,
+                "has_wiki": config.wiki
             }
 
             repo = session.post('https://api.github.com/user/repos', data=json.dumps(payload))              # create a new repo

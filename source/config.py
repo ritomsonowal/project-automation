@@ -5,3 +5,10 @@
 # enter your GitHub credentials
 username = 'ritomsonowal' # REQUIRED
 password = '' # IF NOT MENTIONED, PASSWORD IS ASKED DURING CREATION OF REPO
+
+# REPOSITORY DETAILS
+description = 'This Repository was created by project-automation via GitHub REST API v3'
+private = False
+issues = True
+projects = True
+wiki = True
