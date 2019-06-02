@@ -6,19 +6,26 @@ import json
 
 # function to authenticate and create git repo
 def create():
+    # get the login credentials from config.py
     username = config.username
     password = config.password
+
+    # start a session
     with requests.Session() as session:
-        if password:
+        if password:            # if password is set in the config.py file, authenticate else ask for password in terminal
             session.auth = (username, password)
         else:
             session.auth = (username, getpass())
-        response = session.get('https://api.github.com/user')
 
-        status = response.status_code
-        if (status == 200):
+        response = session.get('https://api.github.com/user')           # authenticate
+
+        login_status = response.status_code
+
+        if (login_status == 200):               # check the response from GitHub
             print("User Authenticated")
             repo_name = sys.argv[1]
+
+            # Repository Details
             payload = {
                 "name": repo_name,
                 "description": "This project was created via GitHub APIs",
@@ -27,15 +34,20 @@ def create():
                 "has_projects": True,
                 "has_wiki": True
             }
-            repo = session.post('https://api.github.com/user/repos', data=json.dumps(payload))
+
+            repo = session.post('https://api.github.com/user/repos', data=json.dumps(payload))              # create a new repo
+
             if repo.status_code == 201:
                 print("Repository successfully created!")
             else:
                 print("Something went wrong!")
-        elif (status == 401):
+
+        elif (login_status == 401):
             print("Bad Credentials")
-        elif (status == 403):
+
+        elif (login_status == 403):
             print("Max number of login attempts exceeded. Try again later...")
+            
         else:
             print("Something went wrong! Please try again.")
 
